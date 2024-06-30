@@ -1,0 +1,24 @@
+{
+  "name": "gol-rxt-tdd",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Conway's Game of Life",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require @babel/register"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "7.24.7",
+    "@babel/preset-env": "7.24.7",
+    "@babel/register": "7.24.6",
+    "@eslint/compat": "1.1.0",
+    "chai": "5.1.1",
+    "eslint": "9.6.0",
+    "eslint-plugin-react": "7.34.3",
+    "globals": "15.6.0",
+    "mocha": "10.5.2",
+    "typescript-eslint": "7.14.1"
+  }
+}
