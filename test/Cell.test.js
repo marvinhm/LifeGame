@@ -13,23 +13,57 @@ describe('Cell', () => {
 
   it('Should die if it has fewer than 2 live neighbours', () => {
     const cell = new Cell(CellState.ALIVE);
-    const nextState = cell.getNextState(1);
-    expect(nextState).to.eq(CellState.DEAD);
+
+    const nextStateWith0Neighbour = cell.getNextState(0);
+    expect(nextStateWith0Neighbour).to.eq(CellState.DEAD);
+
+    const nextStateWith1Neighbour = cell.getNextState(1);
+    expect(nextStateWith1Neighbour).to.eq(CellState.DEAD);
+  })
+
+  it('Should stay DEAD if it has fewer than 2 neighbours', () => {
+    const cell = new Cell(CellState.DEAD);
+    
+    const nextStateWith0Neighbour = cell.getNextState(0);
+    expect(nextStateWith0Neighbour).to.eq(CellState.DEAD);
+
+    const nextStateWith1Neighbour = cell.getNextState(1);
+    expect(nextStateWith1Neighbour).to.eq(CellState.DEAD);
+  });
+
+  it('Should stay DEAD if it has more than 3 neighbours', () => {
+    const cell = new Cell(CellState.DEAD);
+    
+    const nextStateWith4Neighbour = cell.getNextState(4);
+    expect(nextStateWith4Neighbour).to.eq(CellState.DEAD);
+
+    const nextStateWith5Neighbour = cell.getNextState(5);
+    expect(nextStateWith5Neighbour).to.eq(CellState.DEAD);
+  });
+
+  it('Should die if it has more than 3 live neighbours', () => {
+    const cell = new Cell(CellState.ALIVE);
+    
+    const nextStateWith4Neighbour = cell.getNextState(4);
+    expect(nextStateWith4Neighbour).to.eq(CellState.DEAD);
+
+    const nextStateWith5Neighbour = cell.getNextState(5);
+    expect(nextStateWith5Neighbour).to.eq(CellState.DEAD);
   })
 
   it('Should live if it has 2 to 3 live neighbours', () => {
     const cell = new Cell(CellState.ALIVE);
-    const nextState = cell.getNextState(2);
-    expect(nextState).to.eq(CellState.ALIVE);
+    const nextStateWith2Neighbour = cell.getNextState(2);
+    expect(nextStateWith2Neighbour).to.eq(CellState.ALIVE);
 
     const cell2 = new Cell(CellState.ALIVE);
-    const nextState2 = cell2.getNextState(3);
-    expect(nextState2).to.eq(CellState.ALIVE);
+    const nextStateWith3Neighbour = cell2.getNextState(3);
+    expect(nextStateWith3Neighbour).to.eq(CellState.ALIVE);
   })
 
-  it('Should die if it has greater than 3 live neighbours', () => {
-    const cell = new Cell(CellState.ALIVE);
-    const nextState = cell.getNextState(4);
-    expect(nextState).to.eq(CellState.DEAD);
+  it('Should come alive if it has 3 live neighbours', () => {
+    const cell = new Cell(CellState.DEAD);
+    const nextStateWith3Neighbour = cell.getNextState(3);
+    expect(nextStateWith3Neighbour).to.eq(CellState.ALIVE);
   })
 })
